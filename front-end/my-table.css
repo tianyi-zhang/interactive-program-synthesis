@@ -1,0 +1,122 @@
+.add-new {
+    float: right;
+	height: 30px;
+	font-weight: bold;
+	font-size: 12px;
+	text-shadow: none;
+	min-width: 100px;
+	border-radius: 50px;
+	line-height: 13px;
+	margin-right: 4px;
+}
+
+table.table {
+    table-layout: fixed;
+}
+
+table.table tr th, table.table tr td {
+    border-color: #e9e9e9;
+    padding: .40rem;
+}
+
+table.table th i {
+    font-size: 13px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+table.table th:last-child {
+    width: 100px;
+}
+
+table.table td {
+    padding:; .50rem;
+    word-wrap: break-word;
+}
+
+table.table td a {
+	cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+	min-width: 24px;
+}
+
+table.table td a.add {
+    color: #27C46B;
+}
+
+table.table td a.edit {
+    color: #FFC107;
+}
+
+table.table td a.delete {
+    color: #E34724;
+}
+
+table.table td a.move {
+    color: #27C46B;
+}
+
+table.table td i {
+    font-size: 19px;
+}
+
+table.table td a.add i {
+    font-size: 24px;
+	margin-right: -1px;
+    position: relative;
+    top: 3px;
+}
+
+table.table .form-control {
+    height: 32px;
+    line-height: 32px;
+    box-shadow: none;
+    border-radius: 2px;
+}
+
+table.table td .add {
+	display: none;
+}
+
+.cluster1 {
+    color: #004085;
+    background-color: #b8daff;
+    white-space: pre;
+}
+
+.cluster2 {
+    color: #155724;
+    background-color: #c3e6cb;
+    white-space: pre;
+}
+
+.cluster3 {
+    color: #856404;
+    background-color: #ffeeba;
+    white-space: pre;
+}
+
+.cluster4 {
+    color: #0c5460;
+    background-color: #bee5eb;
+    white-space: pre;
+}
+
+.cluster5 {
+    color: #004085;
+    background-color: #b8daff;
+    white-space: pre;
+}
+
+.cluster6 {
+    color: #721c24;
+    background-color: #f5c6cb;
+    white-space: pre;
+}
+
+.cluster0 {
+    color: #383d41;
+    background-color: #d6d8db;
+    white-space: pre;
+}

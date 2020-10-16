@@ -1,0 +1,95 @@
+h3 {
+	text-align: center;
+	margin: 10px;
+}
+
+.input-anno-btn {
+	margin-top: 10px;
+	margin-bottom: 10px
+}
+
+
+.regex {
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    font-size: large;
+    font-family:'Courier New';
+    color: black;
+}
+
+.header {
+	margin: 20px;
+}
+
+.must-have {
+	background-color:#ffc107;
+	color: #fff;
+}
+
+.not-have {
+	background-color:#6c757d;
+	color: #fff;	
+}
+
+.char-family {
+	background-color:#17a2b8;
+	color: #fff;
+}
+
+.sans-font {
+        color: #404E67;
+		font-family: 'Open Sans', sans-serif;
+}
+
+.match {
+	color:green;
+}
+
+.unmatch {
+	color: red;
+}
+
+.icon {
+    text-align:center;
+}
+
+.removable {
+	font-size: 14px;
+	padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    margin: 2px;
+    font-weight: bold;
+    background-color: #b5bab6;
+    border-color: #b5bab6;
+}
+
+.annotation {
+	font-size: 14px;
+}
+
+.cheatsheet {
+	 margin: 20px;
+}
+
+.keyword {
+	color:#530c8e;
+}
+
+.cheesheetheader {
+	padding: 0;
+}
+
+.tooltip-inner {
+    text-align: left;
+    max-width: 350px;
+}
+
+.code {
+    font-family: Monaco, Consolas, Menlo, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}

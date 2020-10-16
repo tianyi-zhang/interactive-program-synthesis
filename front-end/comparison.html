@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Interactive Program Synthesizer for Regular Expressions</title>
+		
+		<!-- Required meta tags -->
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   	 	<!-- Bootstrap CSS -->
+   		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    	<link rel="stylesheet" href="my-style.css">
+    	<link rel="stylesheet" href="my-table.css">
+
+    	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+   		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<body>
+
+		<div class="jumbotron text-center" style="padding-bottom: 20px; padding-top: 40px; margin-bottom: 15px;">
+  			<h2>Interactive Program Synthesizer for Regular Expressions</h2>
+  			<br>
+  			<div style="font-size:120%;">
+	  			<span><b>Programming Task</b></span>
+	  			<div class="dropdown" style="display:inline-block; padding: 8px;">
+		            <select id="change-task" onchange="changeTask()">
+		              <option value="0">0</option>
+		              <option value="1">1</option>
+		              <option value="2">2</option>
+		              <option value="3">3</option>
+		              <option value="4">4</option>
+		            </select>
+	          	</div><span>:</span>
+	          	<div id="task-desc" style="display:inline-block;"> 
+		  			<span id="task-0">Write a regular expression that accepts strings that contain + or digits but no ++.</span>
+		  			<span id="task-1" style="display: none;">Write a regular expression that accepts strings that only contain A,B or C.</span>
+		  			<span id="task-2" style="display: none;">Write a regular expression that accepts strings that do not contain double hyphens (--).</span>
+		  			<span id="task-3" style="display: none;">Write a regular expression that allows only digits, '&', '|', '(', or ')'.</span>
+		  			<span id="task-4" style="display: none;">Write a regular expression that accepts a string that starts with one optional + symbol and follows with a sequence of digits. E.g., +91, 91, but not 91+</span>
+	  			</div>
+  			</div>
+		</div>
+
+		<div class="container-fluid sans-font">
+	  		<div class="row">
+	  			<div class="col-md-2"></div>
+	  			<div class="col-md-4">
+	    			<h3 style>Examples</h3>
+	      		</div>
+	      		<div class="col-md-4">
+	    			<h3>Regex Candidates</h3>
+	      		</div>
+	  			<div class="col-md-2"> </div>
+	  		</div>
+	  		<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-4">
+	      			<!-- <center style="margin-bottom: 10px;">
+		      				<button class="btn btn-warning" style="color: #fff;" onclick="highlightSelection('exact-match')" title="Annotate characters that must be matched exactly by the regex." data-toggle="tooltip">Match Exactly</button>
+	  						<button class="btn btn-secondary" onclick="highlightSelection('not-match')" title="Annotate characters that should not be matched by the regex." data-toggle="tooltip">Do Not Match</button>
+	  						<button class="btn btn-info" onclick="highlightSelection('char-family')" title="Annotate characters that should be matched as a family of characters such as numbers or letters." data-toggle="tooltip">Character Family</button>
+  					</center> -->
+  					<br />
+  					<br />
+			     	<table id="examples" class="table table-bordered">
+							<thead class="table-title">
+							    <tr class="table-active">
+							      <th scope="col" style="text-align: center;">Input</th>
+							      <th scope="col" style="text-align: center; width: 20%;">Output</th>
+							      <th scope="col" style="text-align: center; width: 25%;"></th>
+							    </tr>
+							</thead>
+							<tbody id="task-0"></tbody>
+					    	<tbody id="task-1">
+					        	<!-- <tr>
+							      <td>ABBCCAABBC</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>ABCAAAAAA</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>ABCAAAAAA</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>A</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>ABBC</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+					      			<td>ABBDF</td>
+					      			<td class="icon"><i class="material-icons unmatch">close</i></td>
+					      			<td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                        </td>
+					    		</tr>
+					    		<tr>
+					     		 	<td>ASD</td>
+					      			<td class="icon"><i class="material-icons unmatch">close</i></td>
+					      			<td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                     	</td>
+					      		</tr>
+					      		<tr>
+					     		 	<td></td>
+					      			<td class="icon"><i class="material-icons unmatch">close</i></td>
+					      			<td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      	</td>
+					      		</tr> -->
+					  		</tbody>
+					  		<tbody id="task-2" style="display: none;">
+					        	<!-- <tr>
+							      <td>white snake</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>white  snake</td>
+							      <td class="icon"><i class="material-icons unmatch">close</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>white snake valley</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr> -->
+					    	</tbody>
+					    	<tbody id="task-3" style="display: none;">
+					        	<!-- <tr>
+							      <td>(0.4545 && 0.567) || 456</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>0.456 && 0.567</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>9876-5-4321</td>
+							      <td class="icon"><i class="material-icons unmatch">close</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>9876-5-4321 (attack)</td>
+							      <td class="icon"><i class="material-icons unmatch">close</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>(0.4545 && 0.567) || 456 && (me)</td>
+							      <td class="icon"><i class="material-icons unmatch">close</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr> -->
+					    	</tbody>
+					    	<tbody id="task-4" style="display: none;">
+					        	<!-- <tr>
+							      <td>+91</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>91</td>
+							      <td class="icon"><i class="material-icons match">check</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>++91</td>
+							      <td class="icon"><i class="material-icons unmatch">close</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>+9+1</td>
+							      <td class="icon"><i class="material-icons unmatch">close</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>91+</td>
+							      <td class="icon"><i class="material-icons unmatch">close</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr>
+					    		<tr>
+							      <td>91&*&</td>
+							      <td class="icon"><i class="material-icons unmatch">close</i></td>
+							      <td class="icon">
+										<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+			                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+			                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+			                      </td>
+					    		</tr> -->
+					    	</tbody>
+					</table>
+					<button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>          
+			    </div>
+			    <div id="regexes" class="col-md-4">
+			      	<center style="margin-bottom: 10px;">
+	  					<button class="btn btn-warning" style="color: #fff;" onclick="highlightSelection('include')" title="Annotate parts of a regex that must be included in the final regex." data-toggle="tooltip">Include</button>
+	  					<button class="btn btn-secondary" onclick="highlightSelection('exclude')" title="Annotate parts of a regex that should not appear in the final regex." data-toggle="tooltip">Exclude</button>
+			      		<button class="btn btn-primary" title="Give me some regexes that satisfy the examples on the left" onclick="synthesize()" data-toggle="tooltip">Synthesize</button>
+			      	</center>
+			      	<label>Synthesis Progress</label>
+			      	<div class="progress" style="height:1.5rem; margin:5px 15px 0px 15px;">
+    					<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="load" style="width:0%">
+      					0%
+    					</div>
+  					</div>
+			      	<div id="user-annotations" style="margin:20px 20px 0px 20px"> 
+			      		<!-- <span class="badge badge-pill annotation must-have">repeatatleast</span><button id="1" class="removable" onclick="removeAnnotation(this.id)">x</button>
+			      		<span class="badge badge-pill annotation not-have">notcc</span><button id ="2" class="removable" onclick="removeAnnotation(this.id)">x</button> -->
+			      	</div>
+			      	<div id="regex-container" style="min-height:0px">
+				      	<!-- <div class="form-check regex">
+	  						<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+	  						<label class="form-check-label" for="defaultCheck1">
+	    						repeatatleast(notcc(&lt;D&gt;),1)
+	  						</label>
+						</div>
+						<div class="form-check regex">
+	  						<input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+	  						<label class="form-check-label" for="defaultCheck2">
+	    						repeatatleast(or((&lt;A&gt;,or(&lt;B&gt;,&lt;C&gt;)),1)
+	  						</label>
+						</div> -->
+					</div>
+
+					<div class="card cheatsheet">
+				      	<div class="card-header" data-toggle="collapse">
+				      		<button class="btn btn-link cheesheetheader" type="button" data-toggle="collapse" data-target="#collapseSheet" aria-expanded="false" aria-controls="collapseSheet">
+          						Regex Cheat Sheet
+          					</button>
+          				</div>
+          				<div id="collapseSheet" class="collapse">
+				      		<div class=" card-body">
+					      		<b class="text-primary">Character Family</b><br>
+					      		<span><span class="keyword">&lt;num&gt;</span> --- a digit from 0 to 9)</span><br>
+					      		<span><span class="keyword">&lt;num1-9&gt;</span> --- a digit from 1 to 9)</span><br>
+					      		<span><span class="keyword">&lt;let&gt;</span> --- an English letter (a - z and A - Z)</span><br> 
+					      		<span><span class="keyword">&lt;low&gt;</span> --- a lowercase letter (a-z)</span></br> 
+					      		<span><span class="keyword">&lt;cap&gt;</span> --- a uppercase letter (A-Z)</span></br>
+					      		<span><span class="keyword">&lt;any&gt;</span> --- any character</span></br>
+					      		<span><span class="keyword">&lt;alphanum&gt;</span> --- any alphanumeric character (0 - 9, a - z, A - Z)</span></br>
+					      		<br>
+					      		<b class="text-primary">Regex Operator</b><br>
+					      		<span><span class="keyword">&lt;startwith(r)&gt;</span> --- returns true if a given string starts with r</span><br>
+					      		<span><span class="keyword">&lt;endwith(r)&gt;</span> --- returns true if a given string ends with r</span><br>
+					      		<span><span class="keyword">&lt;contain(r)&gt;</span> --- returns true if any substring matches r</span><br>
+					      		<span><span class="keyword">&lt;notcc(c)&gt;</span> --- returns true if not containing a character c </span><br>
+					      		<span><span class="keyword">&lt;concat(r1,r2)&gt;</span> --- returns true if the first part of a string matches r1 and the second part of the string matches r2</span><br>
+					      		<span><span class="keyword">&lt;or(r1,r2)&gt;</span> --- returns true if a given string matches either r1 or r2</span><br>
+								<span><span class="keyword">&lt;and(r1,r2)&gt;</span> --- returns true if a given string matches both r1 and r2</span><br>
+								<span><span class="keyword">&lt;not(r)&gt;</span> --- returns true if a given string does not match r</span><br>
+								<span><span class="keyword">&lt;optional(r)&gt;</span> --- returns true if a given string matches r zero or one time</span><br>
+								<span><span class="keyword">&lt;star(r)&gt;</span> --- returns true if a given string matches r zero or more times</span><br>
+								<span><span class="keyword">&lt;repeat(r,k)&gt;</span> --- returns true if r repeats k times in a given string</span><br>
+								<span><span class="keyword">&lt;repeatatleast(r,k)&gt;</span> --- returns true if r repeats at least k times in a given string</span><br>
+								<span><span class="keyword">&lt;repeatrange(r,k1,k2)&gt;</span> --- returns true if r repeats between k1 to k2 times in a given string</span><br>
+							</div>
+				      	</div>
+				    </div>
+			    </div>
+			    <div class="col-md-2"> </div>
+			</div>
+		</div>
+   		<script type="text/javascript" src="functions.js"></script>
+	</body>
+</html>

@@ -1,0 +1,11 @@
+"ABBCCAABBC",+
+"ABCAAAAAA",+
+"ABCAAAAAA",+
+"A",+
+"ABBC",+
+"ABBDF",-
+"ASD",-
+"",-
+
+// ground truth
+repeatatleast(or(<A>,or(<B>,<C>)),1)
