@@ -10,7 +10,7 @@ This repository contains the source code of an interactive program synthesizer f
 
 ## Install from Pre-built Distribution
 
-1. Download our software distribution [here](https://drive.google.com/file/d/1tF7xsR4IV_mukv16uiNtcD59JjT15Hvm/view?usp=sharing).
+1. Download our software distribution [here](https://drive.google.com/file/d/1SmTAFI40eQ_vu5WWc0hPlNpNf552D4mZ/view?usp=sharing).
 2. Unzip the downloaded file.
 3. If you are a Mac user, please copy `libz3java.so`, `lib/libz3java.dylib`, `lib/com.microsoft.z3.jar`, and `lib/libz3.dylib` to `/usr/local/lib`. 
 4. In terminal, go into the unzipped folder and start the server.
