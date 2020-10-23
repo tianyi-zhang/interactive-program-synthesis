@@ -12,7 +12,7 @@ This repository contains the source code of an interactive program synthesizer f
 
 1. Download our software distribution [here](https://drive.google.com/file/d/1tF7xsR4IV_mukv16uiNtcD59JjT15Hvm/view?usp=sharing).
 2. Unzip the downloaded file.
-3. If you are a Mac user, please copy `lib/libz3java.dylib`, `lib/com.microsoft.z3.jar`, and `lib/libz3.dylib` to `/usr/local/lib`. 
+3. If you are a Mac user, please copy `libz3java.so`, `lib/libz3java.dylib`, `lib/com.microsoft.z3.jar`, and `lib/libz3.dylib` to `/usr/local/lib`. 
 4. In terminal, go into the unzipped folder and start the server.
 `java -cp ips-backend.jar edu.harvard.seas.synthesis.HTTPServer -s lib/`
 5. Open `http://localhost:8080` in your web browser.
