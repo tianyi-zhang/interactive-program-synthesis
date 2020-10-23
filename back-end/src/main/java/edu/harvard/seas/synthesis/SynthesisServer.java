@@ -7,9 +7,8 @@ import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Deprecated
 public class SynthesisServer {
-
-	public static final String session_id = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
 
 	public static void main(String[] args) throws Exception {
 		

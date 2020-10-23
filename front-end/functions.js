@@ -255,7 +255,7 @@ const socketCloseListener = (event) => {
         console.error('Disconnected.');
     }
     // socket = new WebSocket('ws://3.236.11.113:8070/');
-    socket = new WebSocket('ws://127.0.0.1:8070/');
+    socket = new WebSocket('ws://127.0.0.1:8080/');
     socket.addEventListener('open', socketOpenListener);
     socket.addEventListener('message', socketMessageListener);
     socket.addEventListener('close', socketCloseListener);

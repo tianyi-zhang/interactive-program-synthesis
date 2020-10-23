@@ -1,7 +1,8 @@
 package edu.harvard.seas.synthesis.logging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.harvard.seas.synthesis.SynthesisServer;
+
+import edu.harvard.seas.synthesis.HTTPServer;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,7 +13,7 @@ import java.util.logging.*;
 
 public class SynthesisLogger {
 
-    public static boolean isLoggingEnabled = true;
+    public static boolean isLoggingEnabled = false; // disable logging by default
 
     private static SynthesisLogger _synthesisLogger;
 
@@ -50,7 +51,7 @@ public class SynthesisLogger {
             String currentDirectory = System.getProperty("user.dir");
             Path logDirectory = Paths.get( currentDirectory, "/instrument_log/").toAbsolutePath();
             Files.createDirectories(logDirectory);
-            String logfile_path = Paths.get(logDirectory.toAbsolutePath().toString(), "synthesizer_log_" + SynthesisServer.session_id + ".log").toString();
+            String logfile_path = Paths.get(logDirectory.toAbsolutePath().toString(), "synthesizer_log_" + HTTPServer.session_id + ".log").toString();
             fileHandler = new FileHandler(logfile_path, true);
             fileHandler.setFormatter(formatter);
             logger.addHandler(fileHandler);
