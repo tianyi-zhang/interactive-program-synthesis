@@ -8,9 +8,9 @@ This repository contains the source code of an interactive program synthesizer f
 
 **Note:** Use `java --version` to check the versions. We recommend using the 64-bit version of Java so we can allocate more memory to the program synthesizer that runs in a JVM. If you use a 32-bit version, we can only allocate a maximum amount of 4G memory to the synthesizer theorectically. In practice, the actual allocated memory could be as low as 1G. When downloading Java, please try to download the distribution or installer with `x64` in its name (not `x86`).  
 
-2. (Optional) Z3
+2. Z3
 
-**Note:** This is optional because we have already included several Z3 distributions for Linux/Mac/Windows into our tool. You don't have to install Z3 by yourself. However, we have seen several folks run into issues related to Z3, such as `java.lang.UnsatisfiedLinkError: ...\libz3java.dll: Can't find dependent libraries`. It means none of the Z3 distributions in our tool are compatible with your operating system. In such cases, we recommend you to manually install Z3 and its Java bindings following the instructions [here](https://github.com/Z3Prover/z3). We also copied the essential steps here.
+Please install Z3 and its Java bindings following the instructions [here](https://github.com/Z3Prover/z3). We also copied the essential steps here.
 ```bash
 python scripts/mk_make.py --java ### Please include the --java flag to build Java bindings
 cd build
@@ -24,21 +24,19 @@ To test if Z3 is successfully installed, please run `z3` in command line.
 
 1. Download our software distribution [here](https://drive.google.com/file/d/1SmTAFI40eQ_vu5WWc0hPlNpNf552D4mZ/view?usp=sharing).
 2. Unzip the downloaded file.
-3. If you are a Mac user, please copy `lib/libz3java.dylib`, `lib/com.microsoft.z3.jar`, and `lib/libz3.dylib` to `/usr/local/lib`. 
-4. In terminal, go into the unzipped folder and start the server.
+3. In terminal, go into the unzipped folder and start the server.
 `java -cp ips-backend.jar edu.harvard.seas.synthesis.HTTPServer -s lib/`
-5. Open `http://localhost:8080` in your web browser.
+4. Open `http://localhost:8080` in your web browser.
 
 **Note1:** Don't forget to add a backslash to escape a whitespace if your file path contains a whitespace.
 
 ## Install from Source Code
 
 1. Clone this project. 
-2. If you are a Mac user, please copy `lib/libz3java.dylib`, `lib/com.microsoft.z3.jar`, and `lib/libz3.dylib` to `/usr/local/lib`. 
-3. Import the `back-end` folder into Eclipse as an existing Maven project ([instruction](https://vaadin.com/learn/tutorials/import-maven-project-eclipse)).
-4. In Eclipse, add `-s lib/` as the runtime commandline argument of the `HTTPServer` class ([Tutorial: How to add a commandline argument in Eclipse](https://www.codejava.net/ides/eclipse/how-to-pass-arguments-when-running-a-java-program-in-eclipse)).
-5. Run `HTTPServer` to start the server.
-7. Open `http://localhost:8080` in your web browser.ser.
+2. Import the `back-end` folder into Eclipse as an existing Maven project ([instruction](https://vaadin.com/learn/tutorials/import-maven-project-eclipse)).
+3. In Eclipse, add `-s lib/` as the runtime commandline argument of the `HTTPServer` class ([Tutorial: How to add a commandline argument in Eclipse](https://www.codejava.net/ides/eclipse/how-to-pass-arguments-when-running-a-java-program-in-eclipse)).
+4. Run `HTTPServer` to start the server.
+5. Open `http://localhost:8080` in your web browser.ser.
 
 **Note1:** We use Eclipse for development, so the instructions above are based on Eclipse. You can also use other IDEs such as [IntelliJ](https://www.lagomframework.com/documentation/1.6.x/java/IntellijMaven.html). We recommend using a modern IDE since it is easier to run and debug.
 
@@ -66,4 +64,4 @@ To test if Z3 is successfully installed, please run `z3` in command line.
 ```libz3java.dylib cannot be opened because it is from an unidentified developer.```
 The underlying synthesizer in our tool depends on a theorem prover, [Z3](https://github.com/Z3Prover/z3), developed by Microsoft Research. Please grant the permission to this app by 1) open System Preferences, 2) click Security & Privacy, 3) click General, and 4) click "Open Anyway" next to the warning of this app.
 
-2. By default, you don't have to install Z3 by yourself as our tool has multiple distributions of Z3 for different operating systems. We have tested it on Mac OS Mojave and Catalina, Ubuntu 18.04, and Windows 10. But if you run into exceptions like `Exception in thread "main" java.lang.UnsatisfiedLinkError: ...\libz3java.dll: Can't find dependent libraries`, it means the default Z3 distributions do not work. In such a case, I recommend you to install Z3 and its Java bindings following the instructions in [Z3's website](https://github.com/Z3Prover/z3).
+2. If the synthesis progress bar is stuck at 96% for a while (e.g., more than 2 minutes), it is likely that Z3 is not installed properly in your machine. To confirm this, please a) check if there is a `resnax-error` file, b) check if `resnax-error` has exceptions like `Exception in thread "main" java.lang.UnsatisfiedLinkError: ...\libz3java.dll: Can't find dependent libraries`. If so, you need to double check the Z3 installation steps and please make sure you include the `--java` flag in the build command. Otherwise, Z3 won't build the Java bindings. Please also feel free to contact me (tianyi@g.harvard.edu) and I am happy to help you solve this problem.
