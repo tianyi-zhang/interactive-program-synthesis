@@ -32,6 +32,8 @@ This repository contains the source code of an interactive program synthesizer f
 
 **Note2:** If you want to build the project from a terminal, run `mvn package` to build and package the project. A jar of the back-end server is generated in the `target` folder. Then run the jar following Step 3-5 in the next section.
 
+**Note3:** Run `sh package.sh` to build the distribution.
+
 ## Backend Server Usage
 **Usage:** 
 `java -jar ips-backend.jar -s <arg> [-n <arg>] [-t <arg>] [-h]`
