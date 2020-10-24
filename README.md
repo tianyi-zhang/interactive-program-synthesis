@@ -8,18 +8,6 @@ This repository contains the source code of an interactive program synthesizer f
 
 **Note:** Use `java --version` to check the versions. We recommend using the 64-bit version of Java so we can allocate more memory to the program synthesizer that runs in a JVM. If you use a 32-bit version, we can only allocate a maximum amount of 4G memory to the synthesizer theorectically. In practice, the actual allocated memory could be as low as 1G. When downloading Java, please try to download the distribution or installer with `x64` in its name (not `x86`).  
 
-2. Z3
-
-Please install Z3 and its Java bindings following the instructions [here](https://github.com/Z3Prover/z3). We also copied the essential steps here.
-```bash
-python scripts/mk_make.py --java ### Please include the --java flag to build Java bindings
-cd build
-make
-sudo make install
-```
-
-To test if Z3 is successfully installed, please run `z3` in command line.
-
 ## Install from Pre-built Distribution
 
 1. Download our software distribution [here](https://drive.google.com/file/d/1SmTAFI40eQ_vu5WWc0hPlNpNf552D4mZ/view?usp=sharing).
@@ -64,4 +52,15 @@ To test if Z3 is successfully installed, please run `z3` in command line.
 ```libz3java.dylib cannot be opened because it is from an unidentified developer.```
 The underlying synthesizer in our tool depends on a theorem prover, [Z3](https://github.com/Z3Prover/z3), developed by Microsoft Research. Please grant the permission to this app by 1) open System Preferences, 2) click Security & Privacy, 3) click General, and 4) click "Open Anyway" next to the warning of this app.
 
-2. If the synthesis progress bar is stuck at 96% for a while (e.g., more than 2 minutes), it is likely that Z3 is not installed properly in your machine. To confirm this, please a) check if there is a `resnax-error` file, b) check if `resnax-error` has exceptions like `Exception in thread "main" java.lang.UnsatisfiedLinkError: ...\libz3java.dll: Can't find dependent libraries`. If so, you need to double check the Z3 installation steps and please make sure you include the `--java` flag in the build command. Otherwise, Z3 won't build the Java bindings. Please also feel free to contact me (tianyi@g.harvard.edu) and I am happy to help you solve this problem.
+2. If the synthesis progress bar is stuck at 96% for a while (e.g., more than 2 minutes), it is likely that Z3 libraries are not found in your machine. To confirm this, please a) check if there is a `resnax-error` file, b) check if `resnax-error` has exceptions like `Exception in thread "main" java.lang.UnsatisfiedLinkError: ...\libz3java.dll: Can't find dependent libraries`. By default, I have included the Z3 libraries for Windows/Linux/Mac in the `lib` folder and these libraries will be dynamically linked and loaded to run Z3. Yet in some versions of OS, this default mechanism doesn't work, causing errors like `UnsatisfiedLinkError`. I have found several workarounds. Please try each of them one by one until the problem is solved. If none of the following solutions work, please please feel free to contact me (tianyi@g.harvard.edu) and I am happy to help you solve this problem. 
+    - (Mac OS) If you are a Mac user, Mac OS has some restrictions on loading dynamic libraries and such restrictions have subtle differences across Mac OS versions. According to the [offical doc from Apple](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/DynamicLibraryUsageGuidelines.html#//apple_ref/doc/uid/TP40001928-SW21), the working directory of the current process, `/usr/lib/`, `/usr/local/lib`, `~/lib` are the several locations MacOS searches for. Yet different MacOS versions may purge dynamic libraries from some of these directories due to System Integrity Protection. For example, in Mac OSX Catalina 10.15.7, only copying Z3 libraries (`libz3java.dylib`, `com.microsoft.z3.jar`, and `libz3.dylib`) to the current directory (i.e., the `ips` folder) works. But in some other Mac OS versions such as Mojave and High Sierra, copying these files to `/usr/local/lib` works. So I recommend you to try to copy these Z3 libraries to each of the paths until the `UnsatisfiedLinkError` issue is solved.
+    - (Linux) The default mechanism works in Ubuntu 14.04 and 18.04 (haven't tested 16/04 yet). But I run into this `UnsatisfiedLinkError` when installing our tool in Amazon Linux AMI. It seems Amazon EC2 doesn't allow to set custom dynamic library paths. The only way I can solve it is by placing those Z3 libraries in the default LD_LIBRARY_PATH, e.g., `/usr/lib`, `/usr/lib64`, and also removing the `Djava.library.path` argument in [this line of code](https://github.com/tianyi-zhang/interactive-program-synthesis/blob/main/back-end/src/main/java/edu/harvard/seas/synthesis/ResnaxRunner.java#L278).  
+    - If none of the solutions above work on your machine, maybe it's because none of the Z3 distributions included in our tool is compatible with your machine. In such a case, I recommend you to manually install Z3 and its Java bindings following the instructions [here](https://github.com/Z3Prover/z3). I also copied the essential steps here.
+      ```bash
+      python scripts/mk_make.py --java ### Please include the --java flag to build Java bindings
+      cd build
+      make
+      sudo make install
+      ```
+
+      To test if Z3 is successfully installed, please run `z3` in command line.
