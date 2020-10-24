@@ -72,6 +72,7 @@ public class ResnaxRunner {
 		 + File.pathSeparator + resnax_path + File.separator + "com.microsoft.z3.jar"
 		 + File.pathSeparator + resnax_path + File.separator + "javatuples-1.2.jar"
 		 + File.pathSeparator + resnax_path + File.separator + "libz3java.dylib"
+		 + File.pathSeparator + resnax_path + File.separator + "libz3.dylib"
 		 + File.pathSeparator + resnax_path + File.separator + "libz3java.so";
 	}
 	
