@@ -3,6 +3,8 @@
 
 This repository contains the source code of an interactive program synthesizer for regular expressions. It is implemented based on the interaction model proposed in our UIST 2020 paper *[Interactive Program Synthesis by Augmented Examples](https://tianyi-zhang.github.io/files/uist2020-interactive-program-synthesis.pdf)*. Users can guide the synthesis process by specifying how different parts of their examples should be treated by a synthesizer via light-weight annotations (i.e., *semantic augmentation*). Furthermore, users can ask the synthesizer to generate additional examples and corner cases to generate  by revealing how a synthesized program behave on additional examples from a hypothetical input space (i.e., *data augmentation*).
 
+## Tutorial Video ([link](https://www.youtube.com/watch?v=dMyd9i31NxE))
+
 ## Software Prerequisites
 1. Java 1.8 or higher ([download](https://www.java.com/en/download/))
 
@@ -10,7 +12,7 @@ This repository contains the source code of an interactive program synthesizer f
 
 ## Install from Pre-built Distribution
 
-1. Download our software distribution [here](https://drive.google.com/file/d/1SmTAFI40eQ_vu5WWc0hPlNpNf552D4mZ/view?usp=sharing).
+1. Download our software distribution [here](https://drive.google.com/file/d/1__OffkKOnTEYXQHBAQM94dfKBrtB1ilE/view?usp=sharing).
 2. Unzip the downloaded file.
 3. In terminal, go into the unzipped folder and start the server.
 `java -cp ips-backend.jar edu.harvard.seas.synthesis.HTTPServer -s lib/`
