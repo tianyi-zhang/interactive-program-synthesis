@@ -3,7 +3,7 @@
 
 This repository contains the source code of an interactive program synthesizer for regular expressions. It is implemented based on the interaction model proposed in our UIST 2020 paper *[Interactive Program Synthesis by Augmented Examples](https://tianyi-zhang.github.io/files/uist2020-interactive-program-synthesis.pdf)*. Users can guide the synthesis process by specifying how different parts of their examples should be treated by a synthesizer via light-weight annotations (i.e., *semantic augmentation*). Furthermore, users can ask the synthesizer to generate additional examples and corner cases to generate  by revealing how a synthesized program behave on additional examples from a hypothetical input space (i.e., *data augmentation*).
 
-## Tutorial Video ([link](https://www.youtube.com/watch?v=dMyd9i31NxE))
+## Video Tutorial ([link](https://www.youtube.com/watch?v=dMyd9i31NxE))
 
 ## Software Prerequisites
 1. Java 1.8 or higher ([download](https://www.java.com/en/download/))
